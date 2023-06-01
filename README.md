@@ -113,7 +113,7 @@ nav.fill(structure);
 ```
 
 See 
-[tests/navbar.json](https://github.com/ICTU/gros-visualization-ui/blob/master/tests/navbar.json) 
+[tests/navbar.json](https://github.com/grip-on-software/visualization-ui/blob/master/tests/navbar.json) 
 for an example structure.
 
 ### Navigation
@@ -192,7 +192,7 @@ loadingSpinner.stop();
 ## Development
 
 - The repository can be found on 
-  [GitHub](https://github.com/ICTU/gros-visualization-ui).
+  [GitHub](https://github.com/grip-on-software/visualization-ui).
 - [Travis](https://travis-ci.org/ICTU/gros-visualization-ui) is used to run 
   unit tests.
 - You can perform local tests using `npm test`. This requires the source code

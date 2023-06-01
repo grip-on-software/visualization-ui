@@ -20,11 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ICTU/gros-visualization-ui"
+    "url": "https://github.com/grip-on-software/visualization-ui.git"
   },
-  "homepage": "https://github.com/ICTU/gros-visualization-ui",
+  "homepage": "https://github.com/grip-on-software/visualization-ui",
   "bugs": {
-    "url": "https://github.com/ICTU/gros-visualization-ui/issues"
+    "url": "https://github.com/grip-on-software/visualization-ui/issues"
   },
   "scripts": {
     "pretest": "cross-env NODE_ENV=test webpack --mode=development --hide-modules",
