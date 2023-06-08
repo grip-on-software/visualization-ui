@@ -2,11 +2,11 @@
 
 [![npm](https://img.shields.io/npm/v/@gros/visualization-ui.svg)](https://www.npmjs.com/package/@gros/visualization-ui)
 [![Build 
-Status](https://travis-ci.org/ICTU/gros-visualization-ui.svg?branch=master)](https://travis-ci.org/ICTU/gros-visualization-ui)
+status](https://github.com/grip-on-software/visualization-ui/actions/workflows/visualization-ui.yml/badge.svg)](https://github.com/grip-on-software/visualization-ui/actions/workflows/visualization-ui.yml)
 [![Coverage 
-Status](https://coveralls.io/repos/github/ICTU/gros-visualization-ui/badge.svg?branch=master)](https://coveralls.io/github/ICTU/gros-visualization-ui?branch=master)
+Status](https://coveralls.io/repos/github/grip-on-software/visualization-ui/badge.svg?branch=master)](https://coveralls.io/github/grip-on-software/visualization-ui?branch=master)
 [![Quality Gate 
-Status](https://sonarcloud.io/api/project_badges/measure?project=ictu-gros%3Avisualization-ui&metric=alert_status)](https://sonarcloud.io/dashboard?id=ictu-gros%3Avisualization-ui)
+Status](https://sonarcloud.io/api/project_badges/measure?project=grip-on-software_visualization-ui&metric=alert_status)](https://sonarcloud.io/project/overview?id=grip-on-software_visualization-ui)
 
 This library contains a number of user interface fragments to be used in 
 visualization based on [Data-Driven Documents](https://d3js.org/).
@@ -193,8 +193,13 @@ loadingSpinner.stop();
 
 - The repository can be found on 
   [GitHub](https://github.com/grip-on-software/visualization-ui).
-- [Travis](https://travis-ci.org/ICTU/gros-visualization-ui) is used to run 
-  unit tests.
+- [GitHub 
+  Actions](https://github.com/grip-on-software/visualization-ui/actions) is 
+  used to run unit tests.
+- [SonarCloud](https://sonarcloud.io/project/overview?id=grip-on-software_visualization-ui) 
+  performs quality gate scans and tracks them.
+- [Coveralls](https://coveralls.io/github/grip-on-software/visualization-ui) 
+  receives coverage reports and tracks them.
 - You can perform local tests using `npm test`. This requires the source code
   repository for the test suite and installing the development dependencies,
   using `npm install` in the cloned repository directory.

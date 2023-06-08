@@ -21,6 +21,7 @@ module.exports = {
     entry: "./index",
     output: {
         path: __dirname + "/dist",
+        library: process.env.NODE_ENV === "production" ? undefined : "UI",
         filename: process.env.NODE_ENV === "production" ? "bundle.min.js" :
             "bundle.js"
     },
