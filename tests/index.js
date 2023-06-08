@@ -20,11 +20,10 @@ limitations under the License.
 
 const fs = require('fs'),
       { Script } = require('vm'),
-      d3 = require('d3'),
       jsdom = require('jsdom');
 
-const bundle = fs.readFileSync('dist/bundle.js').toString(),
-      bundleScript = new Script(bundle);
+const d3 = new Script(fs.readFileSync('node_modules/d3/dist/d3.js').toString()),
+      ui = new Script(fs.readFileSync('dist/bundle.js').toString());
 
 global.__coverage__ = {};
 var currentWindow;
@@ -47,10 +46,13 @@ function setupPage(body, done) {
 
     dom.window.__coverage__ = global.__coverage__;
     // Create a D3 object.
-    const d3window = d3.select(dom.window.document);
+    const vmContext = dom.getInternalVMContext();
+    d3.runInContext(vmContext);
+    const d3window = dom.window.d3.select(dom.window.document);
 
     // Run the script to acquire the module components.
-    const { Locale, Navbar, Navigation, Spinner } = dom.runVMScript(bundleScript);
+    ui.runInContext(vmContext);
+    const { Locale, Navbar, Navigation, Spinner } = dom.window.UI;
 
     currentWindow = dom.window;
 

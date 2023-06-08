@@ -1,0 +1,33 @@
+name: grip-on-software/visualization-ui
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3.6.0
+        with:
+          cache: npm
+      - run: npm install
+      - run: npm test
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v1.9
+        env:
+          SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        if: "${{ success() }}"
+    strategy:
+      matrix:
+        node_js:
+          - '16'
+          - '18'
