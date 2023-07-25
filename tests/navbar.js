@@ -134,10 +134,18 @@ describe('Navigation bar', () => {
         nav.fill(structure);
         const burger = elm.select('.navbar-burger');
 
+        // Click burger twice to test if the menu opens and closes
+        var set = false;
         burger.on('click.test', () => {
-            assert.isTrue(burger.classed('is-active'));
-            assert.isTrue(elm.select('#menu-content').classed('is-active'));
-            done();
+            set = !set;
+            assert.equal(burger.classed('is-active'), set);
+            assert.equal(elm.select('#menu-content').classed('is-active'), set);
+            if (set) {
+                burger.dispatch('click');
+            }
+            else {
+                done();
+            }
         });
         burger.dispatch('click');
     });
