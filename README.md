@@ -116,6 +116,12 @@ See
 [tests/navbar.json](https://github.com/grip-on-software/visualization-ui/blob/master/tests/navbar.json) 
 for an example structure.
 
+Note that the navigation heading may be extended with more JavaScript, in order 
+to improve its functionality on mobile/touch devices, for example how dropdowns 
+appear and how the menus function when the device switches between screen sizes 
+that affect the responsive design. We do not provide this functionality because 
+different choices may be made here and may be equally valid.
+
 ### Navigation
 
 Create a horizontal navigation list to switch between views for different 

@@ -61,12 +61,10 @@ describe('Navigation bar', () => {
         const menu = elm.select('.navbar-menu');
         assert.equal(menu.attr('id'), 'menu-content');
         const item = menu.select('.navbar-start .navbar-item');
-        assert.isTrue(item.classed('has-dropdown is-focus'));
+        assert.isTrue(item.classed('has-dropdown'));
         const link = item.select('.navbar-link');
         assert.equal(link.attr('href'), 'http://localhost/content?prop=value&message=Message content');
         assert.equal(link.text().trim(), 'Contents');
-        link.node().click();
-        assert.isTrue(item.classed('is-active'));
         const items = item.selectAll('.navbar-dropdown a.navbar-item');
         assert.equal(items.size(), 2);
         assert.equal(items.filter(':first-child').attr('href'), 'one');
@@ -81,7 +79,7 @@ describe('Navigation bar', () => {
 
         const languages = menu.select('.navbar-end > .navbar-item.has-dropdown');
         const back = languages.select('.navbar-link');
-        assert.equal(back.attr('href'), '/');
+        assert.isNull(back.attr('href'));
         assert.equal(back.attr('title'), 'Return to default language');
         assert.equal(back.select('.icon i').attr('class'), 'fas fa-language fa-xs');
         const langs = languages.selectAll('#languages > ul > li');
