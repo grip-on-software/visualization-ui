@@ -1,0 +1,267 @@
+{
+    "$id": "https://gros.liacs.nl/schema/visualization-ui/navbar.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Visualization UI navigation bar structure",
+    "$ref": "#/$defs/navbar",
+    "$defs": {
+        "navbar": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "oneOf": [
+                            {"$ref": "#/$defs/brand"},
+                            {"$ref": "#/$defs/link"},
+                            {"$ref": "#/$defs/fullscreen"},
+                            {"$ref": "#/$defs/image"},
+                            {"$ref": "#/$defs/text"},
+                            {"$ref": "#/$defs/burger"},
+                            {"$ref": "#/$defs/menu"},
+                            {"$ref": "#/$defs/start"},
+                            {"$ref": "#/$defs/end"},
+                            {"$ref": "#/$defs/dropdown"},
+                            {"$ref": "#/$defs/divider"}
+                        ],
+                        "required": ["type"]
+                    }
+                },
+                {"$ref": "#/$defs/locale"}
+            ]
+        },
+        "brand": {
+            "description": "A Bulma navbar brand container. See: https://bulma.io/documentation/components/navbar/#navbar-brand",
+            "properties": {
+                "type": {"const": "brand"},
+                "items": {
+                    "$ref": "#/$defs/navbar",
+                    "description": "Navbar items to display in the brand section."
+                }
+            }
+        },
+        "link": {
+            "description": "A Bulma navbar item. See: https://bulma.io/documentation/components/navbar/#navbar-item",
+            "properties": {
+                "type": {"const": "link"},
+                "class": {
+                    "type": "string",
+                    "description": "Class name for the Bulma navbar item. Can contain more classes, space-separated, but the first one is prefixed with `navbar-`.",
+                    "default": "item"
+                }
+            },
+            "allOf": [
+                {"$ref": "#/$defs/menu_link"}
+            ]
+        },
+        "menu_link": {
+            "properties": {
+                "url": {"$ref": "#/$defs/attr_url"},
+                "title": {
+                    "$ref": "#/$defs/locale_text",
+                    "description": "Title of the navbar item."
+                },
+                "icon": {"$ref": "#/$defs/attr_icon"},
+                "content": {"$ref": "#/$defs/navbar"}
+            }
+        },
+        "fullscreen": {
+            "description": "A fullscreen item, displayed as an icon. Clicking it toggles between fullscreen display and normal browser display.",
+            "properties": {
+                "type": {"const": "fullscreen"},
+                "title": {
+                    "$ref": "#/$defs/locale_text",
+                    "description": "Title of the fullscreen item."
+                },
+                "icon": {"$ref": "#/$defs/attr_icon"}
+            }
+        },
+        "image": {
+            "description": "An image, including sizing options to properly display SVG images.",
+            "properties": {
+                "type": {"const": "image"},
+                "url": {"$ref": "#/$defs/attr_url"},
+                "alt": {
+                    "$ref": "#/$defs/locale_text",
+                    "description": "Alternative text for the image."
+                },
+                "width": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Width of the image."
+                },
+                "height": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Height of the image."
+                },
+                "style": {
+                    "type": "string",
+                    "description": "CSS style declarations for the image element."
+                }
+            }
+        },
+        "text": {
+            "description": "A plain text field.",
+            "properties": {
+                "type": {"const": "text"},
+                "text": {
+                    "$ref": "#/$defs/locale_text",
+                    "description": "Text to display."
+                }
+            }
+        },
+        "burger": {
+            "description": "A Bulma hamburger with a line-based icon for opening a menu on touch devices with smaller screen sizes. See: https://bulma.io/documentation/components/navbar/#navbar-burger",
+            "properties": {
+                "type": {"const": "burger"},
+                "target": {
+                    "type": "string",
+                    "description": "ID of a `menu` item that is expanded or collapsed when tapping the icon."
+                },
+                "lines": {
+                    "type": "integer",
+                    "const": 3,
+                    "description": "Number of lines to display in the burger."
+                }
+            }
+        },
+        "menu": {
+            "description": "A Bulma menu. See: https://bulma.io/documentation/components/navbar/#navbar-menu",
+            "properties": {
+                "type": {"const": "menu"},
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the Bulma menu."
+                },
+                "items": {"$ref": "#/$defs/navbar"}
+            }
+        },
+        "start": {
+            "description": "A Bulma start side of a menu bar. See: https://bulma.io/documentation/components/navbar/#navbar-start-and-navbar-end",
+            "properties": {
+                "type": {"const": "start"},
+                "items": {"$ref": "#/$defs/navbar"}
+            }
+        },
+        "end": {
+            "description": "A Bulma end side of a menu bar. See: https://bulma.io/documentation/components/navbar/#navbar-start-and-navbar-end",
+            "properties": {
+                "type": {"const": "end"},
+                "items": {"$ref": "#/$defs/navbar"}
+            }
+        },
+        "dropdown": {
+            "description": "A Bulma dropdown menu. See: https://bulma.io/documentation/components/navbar/#dropdown-menu",
+            "properties": {
+                "type": {"const": "dropdown"},
+                "class": {
+                    "type": "string",
+                    "description": "Additional class names for the Bulma item that holds the navbar menu."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the inner Bulma dropdown menu."
+                },
+                "link": {
+                    "type": "object",
+                    "description": "Item to display with the menu dropdown arrow.",
+                    "properties": {
+                        "class": {
+                            "type": "string",
+                            "description": "Class name for the Bulma menu dropdown arrow link. Can contain more classes, space-separated, but the first one is prefixed with `navbar-`.",
+                            "default": "link"
+                        }
+                    },
+                    "allOf": [
+                        {"$ref": "#/$defs/menu_link"}
+                    ]
+                },
+                "items": {"$ref": "#/$defs/navbar"}
+            }
+        },
+        "divider": {
+            "description": "A horizontal line in a Bulma dropdown menu to separate navbar items.",
+            "properties": {
+                "type": {"const": "divider"}
+            }
+        },
+        "locale_text": {
+            "oneOf": [
+                {"type": "string"},
+                {"$ref": "#/$defs/locale"}
+            ]
+        },
+        "locale": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z]{2,3}(-.*)?$": {
+                    "type": "string",
+                    "description": "Localization item for a specific language. Valid languages use two-letter ISO 639-1 language codes plus optional BCP 47 subtags, so only a subset of languages is recognized."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "attr_url": {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "URL of the item.",
+                    "format": "uri-reference"
+                },
+                {
+                    "type": "array",
+                    "description": "URL consisting of multiple portions, which are joined together.",
+                    "items": {"$ref": "#/$defs/attr_url"}
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "config": {
+                            "type": "string",
+                            "description": "Configuration key to obtain the URL from."
+                        }
+                    },
+                    "required": ["config"],
+                    "unevaluatedProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "locale": {
+                            "type": "string",
+                            "description": "Localization key from the current locale. May be `lang` to retrieve the current language code."
+                        }
+                    },
+                    "required": ["locale"],
+                    "unevaluatedProperties": false
+                },
+                {"$ref": "#/$defs/locale"}
+            ]
+        },
+        "attr_title": {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Title of the item."
+                },
+                {"$ref": "#/$defs/locale_text"}
+            ]
+        },
+        "attr_icon": {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Classes of the icon for the item, separated by spaces."
+                },
+                {
+                    "type": "array",
+                    "minItems": 2,
+                    "description": "Portions of a FontAwesome icon class for the item. The classes after the first one are prefixed with `fa-`.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -114,7 +114,14 @@ nav.fill(structure);
 
 See 
 [tests/navbar.json](https://github.com/grip-on-software/visualization-ui/blob/master/tests/navbar.json) 
-for an example structure.
+for an example structure. A JSON schema, provided at 
+[schema/navbar.json](https://github.com/grip-on-software/visualization-ui/blob/master/schema/navbar.json), 
+describes what a valid structure looks like. The JSON schema is distributed 
+with the package as a version-dependent schema, and the latest stable version 
+is provided at the [URL defined in the 
+schema](https://gros.liacs.nl/schema/visualization-ui/navbar.json). Depending 
+on your development environment, the schema at any of these locations may be 
+used for validation and code completion.
 
 Note that the navigation heading may be extended with more JavaScript, in order 
 to improve its functionality on mobile/touch devices, for example how dropdowns 

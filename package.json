@@ -10,12 +10,14 @@
     "index.js",
     "dist/*.css",
     "dist/*.css.map",
+    "schema/*.json",
     "README.md"
   ],
   "directories": {
     "lib": "lib",
     "res": "res",
     "dist": "dist",
+    "schemas": "schema",
     "test": "tests"
   },
   "repository": {
