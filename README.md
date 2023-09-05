@@ -105,7 +105,7 @@ const locales = new Locale();
 const nav = new Navbar({
     "container": ".navbar", // Navbar container
     "languages": "#languages", // Selector of a menu in the structure
-    "language_page": "index.html",
+    "language_page": "https://test.example/index.html", // Canonical URL
     "language_query": "lang",
     "my_url": "https://example.com" // Referenced from a link with "config" key
 }, locales);

@@ -86,12 +86,12 @@ describe('Navigation bar', () => {
         assert.equal(langs.size(), 2);
         const active = langs.select('a.is-active');
         assert.isTrue(active.classed('navbar-item'));
-        assert.equal(active.attr('href'), 'index.html?x=y&l=en#abc');
+        assert.equal(active.attr('href'), 'https://example.test/index.html?x=y&l=en#abc');
         assert.equal(active.attr('hreflang'), 'en');
         assert.equal(active.text(), 'English');
         const inactive = langs.select('a:not(.is-active)');
         assert.isTrue(active.classed('navbar-item'));
-        assert.equal(inactive.attr('href'), 'index.html?x=y&l=nl#abc');
+        assert.equal(inactive.attr('href'), 'https://example.test/index.html?x=y&l=nl#abc');
         assert.equal(inactive.attr('hreflang'), 'nl');
         assert.equal(inactive.text(), 'Nederlands');
         const end = menu.select('.navbar-end > a.navbar-item');
