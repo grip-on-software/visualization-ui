@@ -108,6 +108,21 @@ describe('Locale', () => {
         locales.updateNavigationLinks(items.selectAll('a'));
         assert.equal(first.attr('href'), '?en');
         assert.equal(second.attr('href'), '?nl');
+        // Head links with page parameter
+        locales.generateNavigation("#languages", "https://example.test/");
+        const headLinks = d3.selectAll("head link");
+        assert.equal(headLinks.size(), 3);
+        assert.equal(headLinks.filter(":nth-child(1)").attr('href'),
+            'https://example.test/'
+        );
+        assert.equal(headLinks.filter(":nth-child(2)").attr('hreflang'), 'en');
+        assert.equal(headLinks.filter(":nth-child(3)").attr('hreflang'), 'nl');
+        // Calling generateNavigation again does not add more head link elements
+        locales.generateNavigation("#languages", "https://example.test/sub/");
+        assert.equal(d3.selectAll("head link").size(), 3);
+        assert.equal(d3.select("head link:nth-child(1)").attr('href'),
+            'https://example.test/sub/'
+        );
         done();
     });
     it('Replaces messages', (done) => {

@@ -41,6 +41,7 @@ function setupPage(body, done) {
     // Set up the DOM document.
     const html = `<html><head></head><body>${body}</body>`;
     const dom = new jsdom.JSDOM(html, {
+        url: "https://example.test/",
         runScripts: "outside-only",
         pretendToBeVisual: true,
         virtualConsole
