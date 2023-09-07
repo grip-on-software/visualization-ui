@@ -32,11 +32,10 @@ describe('Navigation bar', () => {
         const config = {
             "container": "#navbar",
             "languages": "#languages",
-            "language_page": "index.html",
-            "language_query": "x=y&l",
+            "language_page": "index.html?x=y#ignored",
+            "language_query": "l",
             "my_url": "http://localhost"
         };
-        window.document.location.hash = "#abc";
         const nav = new Navbar(config, locales);
         const elm = d3.select('#navbar');
         nav.fill(structure);
@@ -86,12 +85,12 @@ describe('Navigation bar', () => {
         assert.equal(langs.size(), 2);
         const active = langs.select('a.is-active');
         assert.isTrue(active.classed('navbar-item'));
-        assert.equal(active.attr('href'), 'https://example.test/index.html?x=y&l=en#abc');
+        assert.equal(active.attr('href'), 'https://example.test/index.html?x=y&l=en');
         assert.equal(active.attr('hreflang'), 'en');
         assert.equal(active.text(), 'English');
         const inactive = langs.select('a:not(.is-active)');
         assert.isTrue(active.classed('navbar-item'));
-        assert.equal(inactive.attr('href'), 'https://example.test/index.html?x=y&l=nl#abc');
+        assert.equal(inactive.attr('href'), 'https://example.test/index.html?x=y&l=nl');
         assert.equal(inactive.attr('hreflang'), 'nl');
         assert.equal(inactive.text(), 'Nederlands');
         const end = menu.select('.navbar-end > a.navbar-item');
@@ -102,7 +101,13 @@ describe('Navigation bar', () => {
         assert.equal(example.attr('width'), '50');
         assert.equal(example.attr('height'), '24');
 
-        done();
+        window.addEventListener("hashchange", () => {
+            assert.isNull(back.attr('href'));
+            assert.equal(active.attr('href'), 'https://example.test/index.html?x=y&l=en#abc');
+            assert.equal(inactive.attr('href'), 'https://example.test/index.html?x=y&l=nl#abc');
+            done();
+        });
+        window.document.location.hash = "#abc";
     });
     it('Ignores invalid types', (done) => {
         const specs = require('./locales.json');
@@ -150,7 +155,7 @@ describe('Navigation bar', () => {
     it('Dispatches fullscreen events', (done) => {
         const specs = require('./locales.json');
         const structure = require('./navbar.json');
-        const { d3, Locale, Navbar } = setupPage('<div id="navbar"></div>', done);
+        const { window, d3, Locale, Navbar } = setupPage('<div id="navbar"></div>', done);
         const locales = new Locale(specs);
         const config = {
             "container": "#navbar",
@@ -159,6 +164,7 @@ describe('Navigation bar', () => {
         const nav = new Navbar(config, locales);
         const elm = d3.select('#navbar');
         nav.fill(structure);
+        window.location.hash = '#content';
         const fullscreen = elm.select('.navbar-fullscreen');
 
         let count = 0;
