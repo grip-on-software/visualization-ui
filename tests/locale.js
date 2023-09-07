@@ -100,28 +100,60 @@ describe('Locale', () => {
         assert.equal(second.attr('hreflang'), 'nl');
         assert.equal(second.text(), 'Nederlands');
         assert.isTrue(items.filter(":nth-child(2)").classed("is-active"));
-        locales.updateNavigationLinks(items.selectAll('a'), 'page', 'lang',
-            '#location'
+        // Calling again performs update and does not add more navigation items
+        locales.generateNavigation("#languages", '?again');
+        assert.equal(d3.selectAll("#languages ul li").size(), 2);
+        assert.equal(d3.select('#languages ul li a').attr('href'), '?again&en');
+        done();
+    });
+    it('Updates navigation', (done) => {
+        const specs = require('./locales.json');
+        const { d3, Locale } = setupPage('<div id="languages"></div>', done);
+        const locales = new Locale(specs, "nl");
+        locales.generateNavigation("#languages");
+        const items = d3.selectAll("#languages ul li");
+        locales.updateNavigationLinks(items.selectAll('a'), 'page?good=yes',
+            'lang', '#location', '&'
         );
-        assert.equal(first.attr('href'), 'page?lang=en#location');
-        assert.equal(second.attr('href'), 'page?lang=nl#location');
+        const first = items.filter(":nth-child(1)").select('a');
+        assert.equal(first.attr('href'), 'page?good=yes&lang=en#location');
+        const second = items.filter(":nth-child(2)").select('a');
+        assert.equal(second.attr('href'), 'page?good=yes&lang=nl#location');
         locales.updateNavigationLinks(items.selectAll('a'));
         assert.equal(first.attr('href'), '?en');
         assert.equal(second.attr('href'), '?nl');
-        // Head links with page parameter
+        done();
+    });
+    it('Generates navigation with head links', (done) => {
+        const specs = require('./locales.json');
+        const { d3, Locale } = setupPage('<div id="languages"></div>', done);
+        const locales = new Locale(specs, "nl");
         locales.generateNavigation("#languages", "https://example.test/");
         const headLinks = d3.selectAll("head link");
         assert.equal(headLinks.size(), 3);
         assert.equal(headLinks.filter(":nth-child(1)").attr('href'),
             'https://example.test/'
         );
+        assert.equal(headLinks.filter(":nth-child(2)").attr('href'),
+            'https://example.test/?en'
+        );
         assert.equal(headLinks.filter(":nth-child(2)").attr('hreflang'), 'en');
         assert.equal(headLinks.filter(":nth-child(3)").attr('hreflang'), 'nl');
         // Calling generateNavigation again does not add more head link elements
-        locales.generateNavigation("#languages", "https://example.test/sub/");
+        // but updates the existing canonicalized links
+        locales.generateNavigation("#languages",
+            "https://example.test/sub/?a=b&lang=en#anchor", "lang", false, '',
+            '#anotheranchor'
+        );
         assert.equal(d3.selectAll("head link").size(), 3);
         assert.equal(d3.select("head link:nth-child(1)").attr('href'),
-            'https://example.test/sub/'
+            'https://example.test/sub/?a=b'
+        );
+        assert.equal(d3.select("head link:nth-child(2)").attr('href'),
+            'https://example.test/sub/?a=b&lang=en'
+        );
+        assert.equal(d3.select("head link:nth-child(3)").attr('href'),
+            'https://example.test/sub/?a=b&lang=nl'
         );
         done();
     });
