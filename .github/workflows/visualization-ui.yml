@@ -29,5 +29,5 @@ jobs:
     strategy:
       matrix:
         node_js:
-          - '16'
           - '18'
+          - '20'
