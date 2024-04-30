@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v4.1.4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3.6.0
+      - uses: actions/setup-node@v4.0.2
         with:
           cache: npm
       - run: npm install
       - run: npm test
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v1.9
+        uses: sonarsource/sonarcloud-github-action@v2.1.1
         env:
           SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -29,5 +29,5 @@ jobs:
     strategy:
       matrix:
         node_js:
-          - '18'
           - '20'
+          - '22'
