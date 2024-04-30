@@ -36,7 +36,7 @@
     "pretest": "cross-env NODE_ENV=test webpack --mode=development",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --reporter=mocha-multi-reporters --reporter-options configFile=test-config.json tests",
     "preversion": "npm test",
-    "version": "sed -i '' -e s/sonar\\.projectVersion=.*/sonar.projectVersion=$(jq -r .version package.json)/ sonar-project.properties && sed -i '' -e s/^version: .*/version: $(jq -r .version package.json)/ CITATION.cff && git add sonar-project.properties CITATION.cff",
+    "version": "sed -i '' -e s/sonar\\.projectVersion=.*/sonar.projectVersion=$(jq -r .version package.json)/ sonar-project.properties && sed -i '' -e s/^version:\\ .*/version:\\ $(jq -r .version package.json)/ CITATION.cff && git add sonar-project.properties CITATION.cff",
     "postversion": "git push && git push --tags",
     "prepare": "npm run build-css",
     "build-js": "cross-env NODE_ENV=production webpack --mode=production",
