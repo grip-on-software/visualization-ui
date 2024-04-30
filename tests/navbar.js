@@ -121,6 +121,8 @@ describe('Navigation bar', () => {
         const elm = d3.select('#navbar');
         nav.fill(structure);
 
+        assert.equal(elm.html(), '');
+
         done();
     });
     it('Dispatches burger events', (done) => {
