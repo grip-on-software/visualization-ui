@@ -218,6 +218,7 @@ loadingSpinner.stop();
   using `npm install` in the cloned repository directory.
 - We publish releases to 
   [npm](https://www.npmjs.com/package/@gros/visualization-ui).
+- Noteworthy changes to the library are added to the [changelog](CHANGELOG.md).
 
 ## License
 
