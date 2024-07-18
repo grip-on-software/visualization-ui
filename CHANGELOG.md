@@ -34,14 +34,14 @@ and we adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Locale: Correct query string separator for language parameter if the URL/page 
   has a query string.
 
-## [0.8.0] - 2024-09-05
+## [0.8.0] - 2023-09-05
 
 ### Added
 
 - Canonical and alternate `<link>` elements added to the `<head>` based on 
   languages and page URL.
 
-## [0.7.0] - 2023-08-25
+## [0.7.0] - 2023-07-25
 
 ### Added
 
@@ -166,7 +166,7 @@ and we adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Spinner: Rotation duration is now applied from configuration instead of an 
   unused parameter, so that it properly spins.
 
-## [0.4.5] - 2017-06-21
+## [0.4.5] - 2018-06-21
 
 ### Fixed
 
