@@ -7,6 +7,8 @@ and we adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-08-02
+
 ### Added
 
 - Navbar: Canonical URL can be provided in `base_url` configuration as 
@@ -330,7 +332,9 @@ and we adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial version of common visualization fragments.
 
 [Unreleased]: 
-https://github.com/grip-on-software/visualization-ui/compare/v0.8.2...HEAD
+https://github.com/grip-on-software/visualization-ui/compare/v1.0.0...HEAD
+[1.0.0]:  
+https://github.com/grip-on-software/visualization-ui/compare/v0.8.2...1.0.0
 [0.8.2]: 
 https://github.com/grip-on-software/visualization-ui/compare/v0.8.1...v0.8.2
 [0.8.1]: 

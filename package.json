@@ -1,10 +1,10 @@
 {
   "name": "@gros/visualization-ui",
-  "version": "0.8.2",
+  "version": "1.0.0",
   "description": "Common visualization UI fragments.",
   "keywords": [
-      "visualization-library",
-      "fragments"
+    "visualization-library",
+    "fragments"
   ],
   "license": "Apache-2.0",
   "author": "Leon Helwerda <l.s.helwerda@liacs.leidenuniv.nl>",
