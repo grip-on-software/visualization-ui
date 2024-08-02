@@ -7,6 +7,12 @@ and we adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Navbar: Canonical URL can be provided in `base_url` configuration as 
+  a fallback in case the `language_page` is relative, which is then used 
+  instead of the current location as base.
+
 ### Changed
 
 - Test on Node.js 20 and 22, no longer on 16 and 18.
