@@ -104,9 +104,10 @@ import {Locale, Navbar} from '@gros/visualization-ui';
 const locales = new Locale();
 const nav = new Navbar({
     "container": ".navbar", // Navbar container
+    "base_url": "https://test.example", // Canonical URL of "base" website
     "languages": "#languages", // Selector of a menu in the structure
-    "language_page": "https://test.example/index.html", // Canonical URL
-    "language_query": "lang",
+    "language_page": "index.html", // Canonical (may be relative to base_url)
+    "language_query": "lang", // Query parameter to add for language switch
     "my_url": "https://example.com" // Referenced from a link with "config" key
 }, locales);
 nav.fill(structure);
